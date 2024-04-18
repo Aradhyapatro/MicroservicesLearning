@@ -1,0 +1,33 @@
+spring.application.name=Api-Gateway
+server.port=8080
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+logging.level.root=INFO
+logging.level.org.springframework.cloud.gateway.route.RouteDefinitionLocator=INFO
+logging.level.org.springframework.cloud.gateway=TRACE
+
+#Product Routes
+spring.cloud.gateway.routes[0].id=PRODUCT-SERVICE
+spring.cloud.gateway.routes[0].uri=lb://PRODUCT-SERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/api/product
+
+#Order Routes
+spring.cloud.gateway.routes[1].id=ORDER-SERVICE
+spring.cloud.gateway.routes[1].uri=lb://ORDER-SERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/api/order
+
+#Discovery-server Routes
+spring.cloud.gateway.routes[2].id=DISCOVERY-SERVER
+spring.cloud.gateway.routes[2].uri=http://localhost:8761
+spring.cloud.gateway.routes[2].predicates[0]=Path=/eureka/web
+spring.cloud.gateway.routes[2].filters[0]=SetPath=/
+
+#Discovery-server Static Resources Routes
+spring.cloud.gateway.routes[3].id=DISCOVERY-SERVER-STATIC
+spring.cloud.gateway.routes[3].uri=http://localhost:8761
+spring.cloud.gateway.routes[3].predicates[0]=Path=/eureka/**
+
+swagger.enabled=true
+swagger.ui.path=/swagger-ui.html
+

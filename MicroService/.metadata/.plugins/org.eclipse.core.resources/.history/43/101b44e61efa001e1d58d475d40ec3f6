@@ -1,0 +1,68 @@
+package com.arya.OrderService.Service;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.arya.OrderService.DTO.InventoryResponse;
+import com.arya.OrderService.DTO.OrderItemDTO;
+import com.arya.OrderService.DTO.OrderRequestDTO;
+import com.arya.OrderService.Model.Order;
+import com.arya.OrderService.Model.OrderItems;
+import com.arya.OrderService.Repository.OrderRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@RequiredArgsConstructor
+@Service
+@Transactional
+@Slf4j
+public class orderService {
+	final private OrderRepository repo;
+	final private WebClient webClient;
+	
+	@Autowired
+    private DiscoveryClient discoveryClient;
+	
+	public void placeOrder(OrderRequestDTO orderRequest) throws Exception {
+		Order order=new Order();
+		order.setOrderNumber(UUID.randomUUID().toString());
+		
+		List<OrderItems> list=orderRequest.getList().stream().map(a->mapToDto(a)).toList();
+		order.setOrderitems(list);
+		
+		List<String> skucodes = list.stream().map(a->a.getSkucode()).toList();
+		
+		log.info("Aradhya Here = "+discoveryClient.getInstances("INVENTORY-SERVICE")+"");
+		
+		// Verify from the inventory if order is available
+		InventoryResponse[] result = webClient.get()
+							.uri("http://INVENTORY-SERVICE/api/inventory",UriBuilder->UriBuilder.queryParam("skucode", skucodes).build())
+							.retrieve()
+							.bodyToMono(InventoryResponse[].class)
+							.block() ;
+		boolean allProducts = Arrays.stream(result).allMatch(a->a.getIsInStock());
+		
+		if(allProducts) {
+			repo.save(order);
+		}else {
+			throw new Exception("Products not available in the Inventory");
+		}
+		
+	}
+
+	private OrderItems mapToDto(OrderItemDTO a) {
+		OrderItems orderItems=new OrderItems();
+		orderItems.setPrice(a.getPrice());
+		orderItems.setQuantity(a.getQuantity());
+		orderItems.setSkucode(a.getSkucode());
+		return orderItems;
+	}
+}

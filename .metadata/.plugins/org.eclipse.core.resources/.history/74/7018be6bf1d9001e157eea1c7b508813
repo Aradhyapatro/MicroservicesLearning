@@ -1,0 +1,17 @@
+package com.arya.inventory_service.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.arya.inventory_service.Repository.InventoryRepository;
+
+@Service
+public class InventoryService {
+	@Autowired
+	InventoryRepository repo;
+	
+	public static boolean isInStock(String skucode) {
+		return repo.findBySkucode(skucode).isPresent();
+	}
+
+}

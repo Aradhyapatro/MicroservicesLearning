@@ -1,0 +1,14 @@
+package com.arya.inventory_service.Service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class InventoryService {
+	@Autowired
+	InventoryRepository repo;
+	
+	public boolean isInStock(String skucode) {
+		
+	}
+
+}

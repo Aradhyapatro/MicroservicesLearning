@@ -1,0 +1,9 @@
+package com.arya.OrderService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.arya.OrderService.Model.Order;
+
+public interface OrderRepository extends JpaRepository<Order, Long>{
+
+}

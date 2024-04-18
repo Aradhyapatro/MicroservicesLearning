@@ -1,0 +1,5 @@
+package com.arya.OrderService.DTO;
+
+public class OrderResponseDTO {
+
+}

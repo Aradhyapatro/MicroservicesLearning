@@ -1,0 +1,5 @@
+package com.arya.OrderService.Repository;
+
+public interface OrderRepository {
+
+}

@@ -1,0 +1,3 @@
+spring.data.mongodb.host=a4fc5790ba30e1f2335d418e38b420632d63a4d80ab6899831c7a6d1d894c042
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=mydatabase

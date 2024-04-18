@@ -1,0 +1,10 @@
+package com.arya.inventory_service.Repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.arya.inventory_service.Model.Inventory;
+
+@Repository
+public class InventoryRepository extends jpaRepository<Inventory,Long>{
+
+}

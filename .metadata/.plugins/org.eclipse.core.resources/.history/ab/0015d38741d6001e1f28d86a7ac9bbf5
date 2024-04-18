@@ -1,0 +1,66 @@
+package com.Aradhya.ProductService;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import com.Aradhya.ProductService.DTO.ProductRequest;
+import com.Aradhya.ProductService.Repository.ProductRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@SpringBootTest
+@Testcontainers
+@AutoConfigureMockMvc
+class ProductServiceApplicationTests { 
+	
+	@Container
+	static MongoDBContainer mongoDBContainer=new MongoDBContainer("mongo:4.4.2");//createing an image here
+	
+	@Autowired
+	private MockMvc mockmvc;
+	@Autowired
+	private ObjectMapper objectmapper;
+	@Autowired
+	private ProductRepository productrepository;
+	
+	//docker container to dynamically provide it once created in the above code
+	@DynamicPropertySource
+	static void setProperties(DynamicPropertyRegistry dymDynamicPropertyRegistry) {
+		dymDynamicPropertyRegistry.add("spring.data.mongo.uri",mongoDBContainer::getReplicaSetUrl);
+	}
+	
+
+	
+	@Test
+	void shouldCreateProduct() throws Exception {
+		ProductRequest pr=getProductRequest();
+		String str=objectmapper.writeValueAsString(pr);
+		
+		mockmvc.perform(MockMvcRequestBuilders.post("/api/product/create")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(str)).andExpect(status().isCreated());
+		System.out.println(productrepository.findAll() );
+//		Assertions.assertEquals(0,productrepository.findAll().size() );
+	}
+	
+	private ProductRequest getProductRequest() {
+		return ProductRequest.builder().name("IPhone 14")
+				.description("IPhone 14 Pro Max")
+				.price(BigDecimal.valueOf(75000L)).build();
+	}
+
+}

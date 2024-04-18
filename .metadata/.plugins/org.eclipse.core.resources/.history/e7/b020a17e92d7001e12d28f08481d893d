@@ -1,0 +1,5 @@
+package com.arya.OrderService.Model;
+
+public class OrderItems {
+
+}

@@ -1,0 +1,28 @@
+2024-04-11 11:54:23,647 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-04-11 11:58:38,202 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-04-11 11:59:14,183 [Worker-7: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.Aradhya:Product-Service:0.0.1-SNAPSHOT @ C:\Users\KIIT\Desktop\Microservices\MicroService\Microservices\Product-Service\pom.xml.
+2024-04-11 11:59:15,892 [Worker-7: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.Aradhya:Order-Service:0.0.1-SNAPSHOT @ C:\Users\KIIT\Desktop\Microservices\MicroService\Microservices\Order-Service\pom.xml.
+2024-04-11 11:59:16,401 [Worker-7: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.Aradhya:Inventory-Service:0.0.1-SNAPSHOT @ C:\Users\KIIT\Desktop\Microservices\MicroService\Microservices\Inventory-Service\pom.xml.
+2024-04-11 11:59:16,743 [Worker-7: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.Aradhya:DiscoveryServer:0.0.1-SNAPSHOT @ C:\Users\KIIT\Desktop\Microservices\MicroService\Microservices\DiscoveryServer\pom.xml.
+2024-04-11 11:59:29,604 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /DiscoveryServer/src/main/java
+2024-04-11 11:59:29,606 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /DiscoveryServer/src/main/resources
+2024-04-11 11:59:29,607 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /DiscoveryServer/src/main/resources
+2024-04-11 11:59:29,611 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /DiscoveryServer/src/test/java
+2024-04-11 11:59:29,613 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /DiscoveryServer/src/test/resources
+2024-04-11 11:59:31,271 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Product-Service/src/main/java
+2024-04-11 11:59:31,272 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Product-Service/src/main/resources
+2024-04-11 11:59:31,273 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Product-Service/src/main/resources
+2024-04-11 11:59:31,275 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Product-Service/src/test/java
+2024-04-11 11:59:31,276 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Product-Service/src/test/resources
+2024-04-11 11:59:32,800 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Order-Service/src/main/java
+2024-04-11 11:59:32,801 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Order-Service/src/main/resources
+2024-04-11 11:59:32,802 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Order-Service/src/main/resources
+2024-04-11 11:59:32,804 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Order-Service/src/test/java
+2024-04-11 11:59:32,805 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Order-Service/src/test/resources
+2024-04-11 11:59:34,126 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Inventory-Service/src/main/java
+2024-04-11 11:59:34,127 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Inventory-Service/src/main/resources
+2024-04-11 11:59:34,128 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Inventory-Service/src/main/resources
+2024-04-11 11:59:34,130 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Inventory-Service/src/test/java
+2024-04-11 11:59:34,131 [Worker-7: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /Inventory-Service/src/test/resources
+2024-04-11 11:59:35,480 [Worker-7: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 4 project(s) in 28 sec
+2024-04-11 11:59:36,958 [Worker-1: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started

@@ -1,0 +1,8 @@
+package com.arya.inventory_service.Service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class inventoryService {
+
+}

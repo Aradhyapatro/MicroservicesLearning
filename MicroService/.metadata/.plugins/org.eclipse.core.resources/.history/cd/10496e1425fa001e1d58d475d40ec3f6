@@ -1,0 +1,5 @@
+package com.arya.OrderService.Config;
+
+public class restTemplate {
+
+}

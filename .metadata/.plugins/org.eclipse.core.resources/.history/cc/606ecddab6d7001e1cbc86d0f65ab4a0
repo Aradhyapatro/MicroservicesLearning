@@ -1,0 +1,21 @@
+package com.arya.OrderService.Service;
+
+import java.util.UUID;
+
+import com.arya.OrderService.DTO.OrderItemDTO;
+import com.arya.OrderService.DTO.OrderRequestDTO;
+import com.arya.OrderService.Model.Order;
+import com.arya.OrderService.Model.OrderItems;
+
+public class orderService {
+	public void placeOrder(OrderRequestDTO orderRequest) {
+		Order order=new Order();
+		order.setOrderNumber(UUID.randomUUID().toString());
+		
+		orderRequest.getList().stream().map(a->mapToDto(a)).toList();
+	}
+
+	private Object mapToDto(OrderItemDTO a) {
+		OrederItems orederItems=new OrderItems();
+	}
+}

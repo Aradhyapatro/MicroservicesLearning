@@ -1,0 +1,81 @@
+package com.Aradhya.ProductService;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import com.Aradhya.ProductService.DTO.ProductRequest;
+import com.Aradhya.ProductService.Repository.ProductRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@SpringBootTest
+@Testcontainers
+@AutoConfigureMockMvc
+class ProductServiceApplicationTests { 
+    
+    @Container
+    public static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest").withExposedPorts(27019);
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
+    
+    @Autowired
+    private ProductRepository productRepository;
+
+    
+    // Configure Spring Boot to use Testcontainers MongoDB URI for testing
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+    }
+    
+    @Test
+    void shouldCreateProduct() throws Exception {
+        ProductRequest pr = getProductRequest();
+        String requestBody = objectMapper.writeValueAsString(pr);
+        
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/product/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andExpect(status().isCreated());
+        
+        // Check if connected to Testcontainers MongoDB
+        Assertions.assertTrue(mongoUri.contains("testcontainers"));
+        
+        // Ensure the product is saved in the MongoDB container
+        Assertions.assertEquals(1, productRepository.findAll().size());
+    }
+    
+    @Test
+    public void testGetData() throws Exception {
+        // Perform GET request to your API endpoint and verify the status code
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/product/"))
+                .andExpect(status().isOk());
+    }
+    
+    private ProductRequest getProductRequest() {
+        return ProductRequest.builder()
+                .name("IPhone 13")
+                .description("IPhone 13 Pro Max")
+                .price(BigDecimal.valueOf(55000L))
+                .build();
+    }
+}
